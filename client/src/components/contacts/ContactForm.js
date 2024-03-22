@@ -4,7 +4,7 @@ import ContactContext from "../../context/contact/ContactContext";
 const ContactForm = () => {
   const contactContext = useContext(ContactContext);
 
-  const { addContact, current, clearCurrent } = contactContext;
+  const { addContact, current, clearCurrent, updateContact } = contactContext;
 
   useEffect(() => {
     if (current !== null) {
@@ -36,7 +36,11 @@ const ContactForm = () => {
   };
   const onSubmit = (e) => {
     e.preventDefault();
-    addContact(contact);
+    if (current === null) {
+      addContact(contact);
+    } else {
+      updateContact(contact);
+    }
     setContact({
       name: "",
       email: "",
