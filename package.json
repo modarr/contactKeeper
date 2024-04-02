@@ -20,6 +20,8 @@
     "express-validator": "^6.15.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.7.2",
+    "react-axios": "^2.0.6",
+    "react-transition-group": "^4.4.5",
     "webpack-dev-server": "^5.0.3"
   },
   "devDependencies": {
