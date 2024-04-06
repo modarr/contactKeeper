@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import authContext from "./AuthContext";
 import * as axios from "axios";
 
@@ -22,9 +22,9 @@ const AuthState = (props) => {
     user: null,
     error: null,
   };
-  console.log(localStorage.getItem("token"), "token");
+  console.log(initialState.token, "token");
   const [state, dispatch] = useReducer(authReducer, initialState);
-
+  setAuthToken(initialState.token);
   // load user
   const loadUser = async () => {
     try {
@@ -78,7 +78,10 @@ const AuthState = (props) => {
   //Clear errors
 
   const clearErrors = () => dispatch({ type: CLEAR_ERRORS });
-
+  // 'watch' state.token and set headers and local storage on any change
+  useEffect(() => {
+    setAuthToken(initialState.token);
+  }, [initialState.token]);
   return (
     <authContext.Provider
       value={{
