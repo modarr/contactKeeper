@@ -8,6 +8,8 @@ import {
   CLEAR_ERRORS,
   USER_LOADED,
   AUTH_ERROR,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
 } from "../types";
 import authReducer from "./authReducer";
 import setAuthToken from "../../utils/setAuthToken";
@@ -25,10 +27,6 @@ const AuthState = (props) => {
 
   // load user
   const loadUser = async () => {
-    // load token into global header
-    if (localStorage.token) {
-      setAuthToken(localStorage.token);
-    }
     try {
       const res = await axios.get("/api/auth");
       dispatch({ type: USER_LOADED, payload: res.data });
@@ -57,8 +55,22 @@ const AuthState = (props) => {
   };
   // Login user
 
-  const login = () => console.log("login");
+  const login = async (formData) => {
+    const config = {
+      headers: {
+        "content-type": "application/json",
+      },
+    };
 
+    try {
+      const res = await axios.post("/api/auth", formData, config);
+
+      dispatch({ type: LOGIN_SUCCESS, payload: res.data });
+      loadUser();
+    } catch (err) {
+      dispatch({ type: LOGIN_FAIL, payload: err.response.data.msg });
+    }
+  };
   // Logout
 
   const logout = () => console.log("logout");
