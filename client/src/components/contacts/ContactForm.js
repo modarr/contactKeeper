@@ -54,51 +54,50 @@ const ContactForm = () => {
   return (
     <form onSubmit={onSubmit}>
       <h2 className="text-primary">
-        {" "}
-        {current ? "Update Contact " : "Add Contact"}{" "}
+        {current ? "Edit Contact" : "Add Contact"}
       </h2>
       <input
-        type="'text"
-        placeholder="name"
+        type="text"
+        placeholder="Name"
         name="name"
         value={name}
         onChange={onChange}
-      ></input>{" "}
+      />
       <input
-        type="'text"
+        type="email"
         placeholder="Email"
         name="email"
         value={email}
         onChange={onChange}
-      ></input>{" "}
+      />
       <input
-        type="'text"
+        type="text"
         placeholder="Phone"
         name="phone"
         value={phone}
         onChange={onChange}
-      ></input>{" "}
+      />
       <h5>Contact Type</h5>
       <input
         type="radio"
         name="type"
-        value={type}
+        value="personal"
         checked={type === "personal"}
         onChange={onChange}
-      />
-      Personal {"  "}
+      />{" "}
+      Personal{" "}
       <input
         type="radio"
         name="type"
-        value={type}
+        value="professional"
         checked={type === "professional"}
         onChange={onChange}
-      />
-      professional
+      />{" "}
+      Professional
       <div>
         <input
           type="submit"
-          value={current ? "Update Contact " : "Add Contact"}
+          value={current ? "Update Contact" : "Add Contact"}
           className="btn btn-primary btn-block"
         />
       </div>
