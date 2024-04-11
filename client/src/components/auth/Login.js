@@ -22,7 +22,6 @@ const Login = () => {
     email: "",
     password: "",
   });
-
   const { email, password } = user;
   const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
   const onSubmit = (e) => {
@@ -32,8 +31,9 @@ const Login = () => {
     } else {
       login({ email, password });
     }
-    if (isAuthenticated) return <Navigate to="/" />;
   };
+  if (isAuthenticated) return <Navigate to="/" />;
+
   return (
     <div className="form-container">
       <h1>

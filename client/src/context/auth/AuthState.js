@@ -10,6 +10,7 @@ import {
   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
+  LOGOUT,
 } from "../types";
 import authReducer from "./authReducer";
 import setAuthToken from "../../utils/setAuthToken";
@@ -24,7 +25,7 @@ const AuthState = (props) => {
   };
   console.log(initialState.token, "token");
   const [state, dispatch] = useReducer(authReducer, initialState);
-  setAuthToken(initialState.token);
+  setAuthToken(localStorage.getItem("token"));
   // load user
   const loadUser = async () => {
     try {
@@ -73,7 +74,7 @@ const AuthState = (props) => {
   };
   // Logout
 
-  const logout = () => console.log("logout");
+  const logout = () => dispatch({ type: LOGOUT });
 
   //Clear errors
 
