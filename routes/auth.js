@@ -62,9 +62,10 @@ router.post(
           res.json({ token });
         }
       );
-    } catch (err) {}
-    console.error(err.message);
-    return res.status(500).send({ mesg: "server error" });
+    } catch (err) {
+      console.error(err.message);
+      return res.status(500).send({ mesg: "server error" });
+    }
   }
 );
 
